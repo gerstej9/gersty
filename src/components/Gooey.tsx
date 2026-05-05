@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
-import './Gooey.css';
+import { useEffect, useRef } from "react";
+import "./Gooey.css";
 
-const TAIL_LENGTH = 28;
+const TAIL_LENGTH = 40;
 
 type Point = {
   x: number;
@@ -26,14 +26,17 @@ function createInitialHistory(): Point[] {
 
 export default function Gooey() {
   const circlesRef = useRef<Array<HTMLDivElement | null>>([]);
-
+  const idleCenterRef = useRef<Point>({
+    x: typeof window !== "undefined" ? window.innerWidth / 2 : 0,
+    y: typeof window !== "undefined" ? window.innerHeight * 0.45 : 0,
+  });
   const pointerRef = useRef<Point>({
-    x: typeof window !== 'undefined' ? window.innerWidth / 2 : 0,
-    y: typeof window !== 'undefined' ? window.innerHeight * 0.45 : 0,
+    x: typeof window !== "undefined" ? window.innerWidth / 2 : 0,
+    y: typeof window !== "undefined" ? window.innerHeight * 0.45 : 0,
   });
 
   const historyRef = useRef<Point[]>(
-    typeof window !== 'undefined'
+    typeof window !== "undefined"
       ? createInitialHistory()
       : Array.from({ length: TAIL_LENGTH }, () => ({ x: 0, y: 0 })),
   );
@@ -44,16 +47,21 @@ export default function Gooey() {
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
+      "(prefers-reduced-motion: reduce)",
     ).matches;
 
     const isTouchLikeDevice = window.matchMedia(
-      '(hover: none), (pointer: coarse)',
+      "(hover: none), (pointer: coarse)",
     ).matches;
 
     function setPointerPosition(x: number, y: number) {
       pointerRef.current.x = x;
       pointerRef.current.y = y;
+
+      if (isTouchingRef.current) {
+        idleCenterRef.current.x = x;
+        idleCenterRef.current.y = y;
+      }
     }
 
     function resetToIdlePosition() {
@@ -88,6 +96,9 @@ export default function Gooey() {
       }
 
       setPointerPosition(event.clientX, event.clientY);
+
+      idleCenterRef.current.x = event.clientX;
+      idleCenterRef.current.y = event.clientY;
     }
 
     function handlePointerUp() {
@@ -106,21 +117,21 @@ export default function Gooey() {
 
       const elapsed = (timestamp - idleStartTimeRef.current) / 1000;
 
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight * 0.45;
+      const centerX = idleCenterRef.current.x;
+      const centerY = idleCenterRef.current.y;
 
-      const radiusX = isTouchLikeDevice ? 42 : 60;
-      const radiusY = isTouchLikeDevice ? 28 : 40;
+      // tighter, more circular orbit
+      const radius = isTouchLikeDevice ? 18 : 24;
+      const angularSpeed = 1.35;
+
+      // optional tiny harmonic wobble for a soft yin-yang feel
+      const wobble = isTouchLikeDevice ? 2 : 3;
 
       pointerRef.current.x =
-        centerX +
-        Math.cos(elapsed * 0.85) * radiusX +
-        Math.sin(elapsed * 1.35) * 12;
+        centerX + Math.cos(elapsed * angularSpeed) * radius;
 
       pointerRef.current.y =
-        centerY +
-        Math.sin(elapsed * 0.85) * radiusY +
-        Math.cos(elapsed * 1.15) * 10;
+        centerY + Math.sin(elapsed * angularSpeed) * radius;
     }
 
     function updateCursor(timestamp: number) {
@@ -147,41 +158,51 @@ export default function Gooey() {
         const xDiff = next.x - current.x;
         const yDiff = next.y - current.y;
 
-        current.x += xDiff * 0.35;
-        current.y += yDiff * 0.35;
+        const isIdle = !isTouchingRef.current;
+        const followStrength = isIdle ? 0.12 : 0.22;
+
+        current.x += xDiff * followStrength;
+        current.y += yDiff * followStrength;
 
         const circle = circles[i];
 
         if (circle) {
-          const scale = i / TAIL_LENGTH;
+          const progress = i / (TAIL_LENGTH - 1);
+          const minScale = 0.18;
+          const maxScale = 1;
+          let scale = minScale + progress * (maxScale - minScale);
+
+          if (!isTouchingRef.current && i === TAIL_LENGTH - 1) {
+            scale *= 1 + Math.sin(timestamp * 0.005) * 0.05;
+          }
 
           circle.style.transform = `
-            translate3d(${current.x}px, ${current.y}px, 0)
-            translate3d(-50%, -50%, 0)
-            scale(${scale})
-          `;
+    translate3d(${current.x}px, ${current.y}px, 0)
+    translate3d(-50%, -50%, 0)
+    scale(${scale})
+  `;
         }
       }
 
       animationFrameRef.current = requestAnimationFrame(updateCursor);
     }
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
-    document.addEventListener('pointerdown', handlePointerDown);
-    document.addEventListener('pointermove', handlePointerMove);
-    document.addEventListener('pointerup', handlePointerUp);
-    document.addEventListener('pointercancel', handlePointerUp);
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("pointermove", handlePointerMove);
+    document.addEventListener("pointerup", handlePointerUp);
+    document.addEventListener("pointercancel", handlePointerUp);
 
     animationFrameRef.current = requestAnimationFrame(updateCursor);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
 
-      document.removeEventListener('pointerdown', handlePointerDown);
-      document.removeEventListener('pointermove', handlePointerMove);
-      document.removeEventListener('pointerup', handlePointerUp);
-      document.removeEventListener('pointercancel', handlePointerUp);
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("pointermove", handlePointerMove);
+      document.removeEventListener("pointerup", handlePointerUp);
+      document.removeEventListener("pointercancel", handlePointerUp);
 
       if (animationFrameRef.current !== null) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -201,11 +222,7 @@ export default function Gooey() {
       >
         <defs>
           <filter id="goo">
-            <feGaussianBlur
-              in="SourceGraphic"
-              stdDeviation="6"
-              result="blur"
-            />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
             <feColorMatrix
               in="blur"
               mode="matrix"

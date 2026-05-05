@@ -1,6 +1,6 @@
 :root {
   --cursor-size: 30px;
-  --goo-color: #111111;
+  --goo-color: #ffffff;
   --bg: #faf7ee;
 }
 
@@ -11,6 +11,7 @@
   filter: url("#goo");
   z-index: 9999;
   opacity: 1;
+  mix-blend-mode: difference;
 }
 
 .gooey-cursor__circle {
@@ -21,6 +22,7 @@
   height: var(--cursor-size);
   border-radius: 999px;
   background: var(--goo-color);
+  opacity: 1;
   transform: translate3d(-999px, -999px, 0);
   transform-origin: center center;
   will-change: transform;
@@ -33,29 +35,25 @@
   pointer-events: none;
 }
 
-/* Mobile-first sizing */
 @media (hover: none), (pointer: coarse) {
   :root {
-    --cursor-size: 28px;
+    --cursor-size: 30px;
   }
 
   .gooey-cursor__circle {
-    opacity: 0.92;
+    background: #ffffff;
+    opacity: 1;
   }
 }
 
-/* Desktop enhancement */
 @media (hover: hover) and (pointer: fine) {
   :root {
-    --cursor-size: 42px;
-  }
-
-  .gooey-cursor {
-    mix-blend-mode: difference;
+    --cursor-size: 52px;
   }
 
   .gooey-cursor__circle {
-    background: var(--bg);
+    background: #ffffff;
+    opacity: 1;
   }
 }
 

@@ -1,5 +1,7 @@
 import "./App.css";
 import GooeyCursor from "./components/Gooey";
+import ImageTile from "./components/ImageTile";
+import titleImage from "./assets/titleImage.png";
 
 function App() {
   return (
@@ -8,18 +10,24 @@ function App() {
 
       <main className="page-wrap">
         <section className="hero">
-          <p className="eyebrow">Mobile-first interaction demo</p>
+          {/* <p className="eyebrow">Mobile-first interaction demo</p> */}
 
           <h1>
-            Gooey
+            DATE
             <br />
-            Cursor
+            JAMES G
           </h1>
-
-          <p className="intro">
+          <ImageTile
+            src={titleImage}
+            alt="Open information tile"
+            title="Tile Content"
+          >
+            <p>Your overlay content goes here.</p>
+          </ImageTile>
+          {/* <p>
             On phones, the goo moves on its own when idle. Touch or drag
             anywhere to pull it toward your finger.
-          </p>
+          </p> */}
         </section>
       </main>
     </>
