@@ -1,0 +1,67 @@
+:root {
+  --cursor-size: 30px;
+  --goo-color: #111111;
+  --bg: #faf7ee;
+}
+
+.gooey-cursor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  filter: url("#goo");
+  z-index: 9999;
+  opacity: 1;
+}
+
+.gooey-cursor__circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  border-radius: 999px;
+  background: var(--goo-color);
+  transform: translate3d(-999px, -999px, 0);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.goo-filter-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Mobile-first sizing */
+@media (hover: none), (pointer: coarse) {
+  :root {
+    --cursor-size: 28px;
+  }
+
+  .gooey-cursor__circle {
+    opacity: 0.92;
+  }
+}
+
+/* Desktop enhancement */
+@media (hover: hover) and (pointer: fine) {
+  :root {
+    --cursor-size: 42px;
+  }
+
+  .gooey-cursor {
+    mix-blend-mode: difference;
+  }
+
+  .gooey-cursor__circle {
+    background: var(--bg);
+  }
+}
+
+/* Respect accessibility preferences */
+@media (prefers-reduced-motion: reduce) {
+  .gooey-cursor {
+    display: none;
+  }
+}
