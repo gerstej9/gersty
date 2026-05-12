@@ -88,6 +88,45 @@ h1 {
   line-height: 1.45;
 }
 
+.tile-card-content {
+  width: min(100%, 34rem);
+  text-align: center;
+}
+
+.tile-card-content h3 {
+  margin: 0;
+  font-size: clamp(2rem, 9vw, 5rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -0.06em;
+}
+
+.tile-card-content p {
+  margin: 1rem auto 0;
+  font-size: clamp(1rem, 3.5vw, 1.25rem);
+  line-height: 1.45;
+}
+
+.corner-raccoon {
+  display: none;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .corner-raccoon {
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: min(18vw, 5rem);
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+
+    filter: grayscale(1) contrast(0.95) brightness(1.05);
+  }
+}
 /* Desktop enhancement only. Mobile is the priority. */
 @media (hover: hover) and (pointer: fine) {
   body {

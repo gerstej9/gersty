@@ -1,8 +1,10 @@
 import "./App.css";
-import GooeyCursor from "./components/Gooey";
-import ImageTile from "./components/ImageTile";
-import InstagramLink from "./components/InstagramLink";
+import GooeyCursor from "./components/Gooey/Gooey";
+import ImageTile from "./components/ImageTile/ImageTile";
+import InstagramLink from "./components/InstagramLink/InstagramLink";
+import JamesPlaysHowlsTile from "./components/SlideTiles/Howls";
 import titleImage from "./assets/titleImage.png";
+// import raccoon from "./assets/raccoon.png";
 
 function App() {
   return (
@@ -11,30 +13,44 @@ function App() {
 
       <main className="page-wrap">
         <section className="hero">
-          {/* <p className="eyebrow">Mobile-first interaction demo</p> */}
           <div className="hero-content">
             <h1>
               I AM
               <br />
               JAMES G
             </h1>
-            <InstagramLink
-              href="https://www.instagram.com/YOUR_USERNAME/"
-            />
+
+            <InstagramLink href="https://www.instagram.com/YOUR_USERNAME/" />
+
             <ImageTile
               src={titleImage}
-              alt="Open information tile"
-              title="Tile Content"
-            >
-              <p>Your overlay content goes here.</p>
-            </ImageTile>
+              alt="Open tile carousel"
+              title="More Info"
+              slides={[
+                <JamesPlaysHowlsTile />,
+                <div className="tile-card-content">
+                  <h3>First Tile</h3>
+                  <p>This is the first embedded tile.</p>
+                </div>,
+                <div className="tile-card-content">
+                  <h3>Second Tile</h3>
+                  <p>This could be a message, image, video, or link.</p>
+                </div>,
+                <div className="tile-card-content">
+                  <h3>Third Tile</h3>
+                  <p>Swipe left or right to move between these tiles.</p>
+                </div>,
+              ]}
+            />
           </div>
-
-          {/* <p>
-            On phones, the goo moves on its own when idle. Touch or drag
-            anywhere to pull it toward your finger.
-          </p> */}
         </section>
+        {/* Raccoon Animation Here */}
+        {/* <img
+          className="corner-raccoon"
+          src={raccoon}
+          alt=""
+          aria-hidden="true"
+        /> */}
       </main>
     </>
   );
