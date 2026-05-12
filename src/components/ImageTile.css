@@ -1,7 +1,6 @@
 .image-tile-trigger {
   display: block;
-  width: min(70vw, 280px);
-  margin: 2rem auto 0;
+  width: min(30vw, 120px);
   padding: 0;
   border: 0;
   background: transparent;
@@ -12,6 +11,9 @@
   display: block;
   width: 100%;
   height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
 
@@ -90,4 +92,11 @@
 
 .image-tile-panel__content p + p {
   margin-top: 1rem;
+}
+
+.image-tile-trigger,
+.image-tile-trigger__image,
+.image-tile-overlay,
+.image-tile-backdrop {
+  -webkit-tap-highlight-color: transparent;
 }

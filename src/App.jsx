@@ -1,6 +1,7 @@
 import "./App.css";
 import GooeyCursor from "./components/Gooey";
 import ImageTile from "./components/ImageTile";
+import InstagramLink from "./components/InstagramLink";
 import titleImage from "./assets/titleImage.png";
 
 function App() {
@@ -11,19 +12,24 @@ function App() {
       <main className="page-wrap">
         <section className="hero">
           {/* <p className="eyebrow">Mobile-first interaction demo</p> */}
+          <div className="hero-content">
+            <h1>
+              I AM
+              <br />
+              JAMES G
+            </h1>
+            <InstagramLink
+              href="https://www.instagram.com/YOUR_USERNAME/"
+            />
+            <ImageTile
+              src={titleImage}
+              alt="Open information tile"
+              title="Tile Content"
+            >
+              <p>Your overlay content goes here.</p>
+            </ImageTile>
+          </div>
 
-          <h1>
-            DATE
-            <br />
-            JAMES G
-          </h1>
-          <ImageTile
-            src={titleImage}
-            alt="Open information tile"
-            title="Tile Content"
-          >
-            <p>Your overlay content goes here.</p>
-          </ImageTile>
           {/* <p>
             On phones, the goo moves on its own when idle. Touch or drag
             anywhere to pull it toward your finger.
