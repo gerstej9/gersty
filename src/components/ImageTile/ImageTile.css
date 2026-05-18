@@ -57,8 +57,7 @@
   position: relative;
   z-index: 1;
   width: min(100%, 760px);
-  min-height: min(70svh, 620px);
-  max-height: min(84svh, 720px);
+  height: min(84svh, 720px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -105,16 +104,10 @@
 .image-tile-carousel {
   flex: 1;
   min-height: 0;
+  width: 100%;
   overflow: hidden;
-  touch-action: none;
+  touch-action: pan-y;
   cursor: grab;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.image-tile-carousel:active {
-  cursor: grabbing;
 }
 
 .image-tile-track {
@@ -132,6 +125,10 @@
   display: grid;
   place-items: center;
   padding: 1rem;
+}
+
+.image-tile-carousel:active {
+  cursor: grabbing;
 }
 
 .image-tile-slide > * {

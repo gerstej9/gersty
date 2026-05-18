@@ -3,7 +3,12 @@ import GooeyCursor from "./components/Gooey/Gooey";
 import ImageTile from "./components/ImageTile/ImageTile";
 import InstagramLink from "./components/InstagramLink/InstagramLink";
 import JamesPlaysHowlsTile from "./components/SlideTiles/Howls";
+import SlideTile from "./components/SlideTiles/SlideTile";
 import titleImage from "./assets/titleImage.png";
+import jamesOne from './assets/IMG_0105.jpg';
+import jamesTwo from './assets/IMG_9544.jpeg';
+import VideoTile from "./components/SlideTiles/VideoTile";
+import artVideo from './assets/artVideo.mp4';
 // import raccoon from "./assets/raccoon.png";
 
 function App() {
@@ -28,14 +33,9 @@ function App() {
               title="More Info"
               slides={[
                 <JamesPlaysHowlsTile />,
-                <div className="tile-card-content">
-                  <h3>First Tile</h3>
-                  <p>This is the first embedded tile.</p>
-                </div>,
-                <div className="tile-card-content">
-                  <h3>Second Tile</h3>
-                  <p>This could be a message, image, video, or link.</p>
-                </div>,
+                <SlideTile imageSrc={jamesOne} imageAlt="James G" />,
+                <SlideTile imageSrc={jamesTwo} imageAlt="James G" />,
+                <VideoTile videoSrc={artVideo} videoLabel="James G" />,
                 <div className="tile-card-content">
                   <h3>Third Tile</h3>
                   <p>Swipe left or right to move between these tiles.</p>

@@ -5,17 +5,18 @@ import "./ImageTile.css";
 type ImageTileProps = {
   src: string;
   alt: string;
+  title?: string;
   slides: ReactNode[];
 };
 
 const SWIPE_THRESHOLD = 50;
 
-export default function ImageTile({ src, alt, slides }: ImageTileProps) {
+export default function ImageTile({ src, alt, title, slides }: ImageTileProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const startXRef = useRef<number | null>(null);
-  const currentXRef = useRef<number | null>(null);
+  const touchStartXRef = useRef<number | null>(null);
+  const touchEndXRef = useRef<number | null>(null);
 
   const hasMultipleSlides = slides.length > 1;
 
@@ -35,26 +36,21 @@ export default function ImageTile({ src, alt, slides }: ImageTileProps) {
     setIsOpen(false);
   }
 
-  function handlePointerDown(event: React.PointerEvent<HTMLDivElement>) {
-    startXRef.current = event.clientX;
-    currentXRef.current = event.clientX;
-    event.currentTarget.setPointerCapture(event.pointerId);
+  function handleTouchStart(event: React.TouchEvent<HTMLDivElement>) {
+    touchStartXRef.current = event.touches[0].clientX;
+    touchEndXRef.current = event.touches[0].clientX;
   }
 
-  function handlePointerMove(event: React.PointerEvent<HTMLDivElement>) {
-    if (startXRef.current === null) {
+  function handleTouchMove(event: React.TouchEvent<HTMLDivElement>) {
+    touchEndXRef.current = event.touches[0].clientX;
+  }
+
+  function handleTouchEnd() {
+    if (touchStartXRef.current === null || touchEndXRef.current === null) {
       return;
     }
 
-    currentXRef.current = event.clientX;
-  }
-
-  function handlePointerUp() {
-    if (startXRef.current === null || currentXRef.current === null) {
-      return;
-    }
-
-    const deltaX = currentXRef.current - startXRef.current;
+    const deltaX = touchEndXRef.current - touchStartXRef.current;
 
     if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
       if (deltaX < 0) {
@@ -64,8 +60,8 @@ export default function ImageTile({ src, alt, slides }: ImageTileProps) {
       }
     }
 
-    startXRef.current = null;
-    currentXRef.current = null;
+    touchStartXRef.current = null;
+    touchEndXRef.current = null;
   }
 
   useEffect(() => {
@@ -118,7 +114,7 @@ export default function ImageTile({ src, alt, slides }: ImageTileProps) {
             className="image-tile-panel"
             role="dialog"
             aria-modal="true"
-            aria-label={alt}
+            aria-label={title ?? alt}
           >
             <button
               type="button"
@@ -128,12 +124,14 @@ export default function ImageTile({ src, alt, slides }: ImageTileProps) {
             >
               ×
             </button>
+
+            {title && <h2 className="image-tile-title">{title}</h2>}
+
             <div
               className="image-tile-carousel"
-              onPointerDown={handlePointerDown}
-              onPointerMove={handlePointerMove}
-              onPointerUp={handlePointerUp}
-              onPointerCancel={handlePointerUp}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
               <div
                 className="image-tile-track"
@@ -141,7 +139,6 @@ export default function ImageTile({ src, alt, slides }: ImageTileProps) {
               >
                 {slides.map((slide, index) => (
                   <article
-                    // eslint-disable-next-line react/no-array-index-key
                     key={index}
                     className="image-tile-slide"
                     aria-hidden={activeIndex !== index}
@@ -166,7 +163,6 @@ export default function ImageTile({ src, alt, slides }: ImageTileProps) {
                 <div className="image-tile-dots" aria-label="Tile navigation">
                   {slides.map((_, index) => (
                     <button
-                      // eslint-disable-next-line react/no-array-index-key
                       key={index}
                       type="button"
                       className={
