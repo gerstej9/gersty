@@ -4,7 +4,7 @@ import ImageTile from "./components/ImageTile/ImageTile";
 import InstagramLink from "./components/InstagramLink/InstagramLink";
 import JamesPlaysHowlsTile from "./components/SlideTiles/Howls";
 import SlideTile from "./components/SlideTiles/SlideTile";
-import titleImage from "./assets/titleImage.png";
+import titleImage from "./assets/titleImage.PNG";
 import jamesOne from './assets/IMG_0105.jpg';
 import jamesTwo from './assets/IMG_9544.jpeg';
 import VideoTile from "./components/SlideTiles/VideoTile";
