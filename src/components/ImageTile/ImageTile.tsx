@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  isValidElement,
+  cloneElement,
+} from "react";
 import type { ReactNode } from "react";
 import "./ImageTile.css";
 
@@ -143,7 +149,11 @@ export default function ImageTile({ src, alt, title, slides }: ImageTileProps) {
                     className="image-tile-slide"
                     aria-hidden={activeIndex !== index}
                   >
-                    {slide}
+                    {isValidElement(slide)
+                      ? cloneElement(slide, {
+                          isActive: activeIndex === index,
+                        } as { isActive: boolean })
+                      : slide}
                   </article>
                 ))}
               </div>
