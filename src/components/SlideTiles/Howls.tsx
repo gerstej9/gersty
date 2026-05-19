@@ -1,5 +1,5 @@
 import howlsImage from "../../assets/howls.jpeg";
-import howlsAudio from "../../assets/howls.m4a";
+import howlsAudio from "../../assets/Howls.m4a";
 import "./Howls.css";
 
 export default function JamesPlaysHowlsTile() {
