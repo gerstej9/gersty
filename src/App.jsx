@@ -5,10 +5,9 @@ import InstagramLink from "./components/InstagramLink/InstagramLink";
 import JamesPlaysHowlsTile from "./components/SlideTiles/Howls";
 import SlideTile from "./components/SlideTiles/SlideTile";
 import titleImage from "./assets/titleImage.PNG";
-import jamesOne from './assets/IMG_0105.jpg';
-import jamesTwo from './assets/IMG_9544.jpeg';
+import jamesTwo from './assets/IMG_1097.jpeg';
 import VideoTile from "./components/SlideTiles/VideoTile";
-import artVideo from './assets/artVideo.mp4';
+import artVideo from './assets/artVideo.mov';
 // import raccoon from "./assets/raccoon.png";
 
 function App() {
@@ -25,7 +24,7 @@ function App() {
               JAMES G
             </h1>
 
-            <InstagramLink href="https://www.instagram.com/YOUR_USERNAME/" />
+            <InstagramLink href="https://www.instagram.com/datejamesg/" />
 
             <ImageTile
               src={titleImage}
@@ -33,7 +32,6 @@ function App() {
               title="More Info"
               slides={[
                 <JamesPlaysHowlsTile />,
-                <SlideTile imageSrc={jamesOne} imageAlt="James G" />,
                 <SlideTile imageSrc={jamesTwo} imageAlt="James G" />,
                 <VideoTile videoSrc={artVideo} videoLabel="James G" />,
                 <div className="tile-card-content">

@@ -23,10 +23,10 @@ export default function VideoTile({
 
     if (isActive) {
       video.currentTime = 0;
+      video.volume = 0.35;
 
       video.play().catch(() => {
         // Some browsers block autoplay with sound.
-        // The user can still press play manually.
       });
     } else {
       video.pause();
