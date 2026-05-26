@@ -11,7 +11,7 @@ type InstagramLinkProps = {
 export default function InstagramLink({ href }: InstagramLinkProps) {
   return (
     <a
-      className="instagram-link"
+      className="instagram-link tap-highlight-target"
       href={href}
       target="_blank"
       rel="noreferrer"

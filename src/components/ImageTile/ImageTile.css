@@ -1,23 +1,35 @@
 .image-tile-trigger {
   display: block;
   width: min(30vw, 120px);
-  padding: 0;
+  padding: 0.45rem;
   border: 0;
+  border-radius: 20px;
   background: transparent;
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+  transition:
+    transform 70ms ease-out,
+    box-shadow 70ms ease-out,
+    opacity 70ms ease-out;
 }
 
 .image-tile-trigger:focus {
   outline: none;
 }
 
+.image-tile-trigger.is-touch-hovered,
+.image-tile-trigger:hover,
 .image-tile-trigger:focus-visible {
-  outline: 2px solid #111111;
-  outline-offset: 6px;
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 14px 28px rgba(17, 17, 17, 0.16);
+}
+
+.image-tile-trigger:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 8px 16px rgba(17, 17, 17, 0.12);
 }
 
 .image-tile-trigger__image {
@@ -110,6 +122,10 @@
   cursor: grab;
 }
 
+.image-tile-carousel:active {
+  cursor: grabbing;
+}
+
 .image-tile-track {
   height: 100%;
   display: flex;
@@ -125,10 +141,6 @@
   display: grid;
   place-items: center;
   padding: 1rem;
-}
-
-.image-tile-carousel:active {
-  cursor: grabbing;
 }
 
 .image-tile-slide > * {
@@ -172,6 +184,9 @@
   line-height: 1;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 160ms ease,
+    opacity 160ms ease;
 }
 
 .image-tile-dots {
@@ -217,10 +232,12 @@
 
 @media (hover: hover) and (pointer: fine) {
   .image-tile-trigger:hover {
-    opacity: 0.75;
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 14px 28px rgba(17, 17, 17, 0.16);
   }
 
   .image-tile-arrow:hover {
     transform: scale(1.1);
+    opacity: 0.75;
   }
 }

@@ -1,4 +1,5 @@
 import "./App.css";
+import { useEffect } from "react";
 import GooeyCursor from "./components/Gooey/Gooey";
 import ImageTile from "./components/ImageTile/ImageTile";
 import InstagramLink from "./components/InstagramLink/InstagramLink";
@@ -11,6 +12,42 @@ import artVideo from './assets/artVideo.mov';
 // import raccoon from "./assets/raccoon.png";
 
 function App() {
+
+  useEffect(() => {
+  function clearActiveTargets() {
+    document
+      .querySelectorAll(".is-touch-hovered")
+      .forEach((element) => element.classList.remove("is-touch-hovered"));
+  }
+
+  function handlePointerMove(event) {
+    clearActiveTargets();
+
+    const element = document.elementFromPoint(event.clientX, event.clientY);
+    const target = element?.closest(".tap-highlight-target");
+
+    if (target) {
+      target.classList.add("is-touch-hovered");
+    }
+  }
+
+  function handlePointerEnd() {
+    clearActiveTargets();
+  }
+
+  window.addEventListener("pointermove", handlePointerMove);
+  window.addEventListener("pointerdown", handlePointerMove);
+  window.addEventListener("pointerup", handlePointerEnd);
+  window.addEventListener("pointercancel", handlePointerEnd);
+
+  return () => {
+    window.removeEventListener("pointermove", handlePointerMove);
+    window.removeEventListener("pointerdown", handlePointerMove);
+    window.removeEventListener("pointerup", handlePointerEnd);
+    window.removeEventListener("pointercancel", handlePointerEnd);
+  };
+}, []);
+
   return (
     <>
       <GooeyCursor />
@@ -29,7 +66,6 @@ function App() {
             <ImageTile
               src={titleImage}
               alt="Open tile carousel"
-              title="More Info"
               slides={[
                 <JamesPlaysHowlsTile />,
                 <SlideTile imageSrc={jamesTwo} imageAlt="James G" />,

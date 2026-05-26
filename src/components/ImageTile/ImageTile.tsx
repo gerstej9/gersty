@@ -100,7 +100,7 @@ export default function ImageTile({ src, alt, title, slides }: ImageTileProps) {
     <>
       <button
         type="button"
-        className="image-tile-trigger"
+        className="image-tile-trigger tap-highlight-target"
         onClick={() => setIsOpen(true)}
         aria-label={`Open ${alt}`}
       >

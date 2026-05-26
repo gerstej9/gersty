@@ -7,8 +7,9 @@
   justify-content: center;
   gap: 0.85rem;
   margin: 1.5rem auto 0;
-  padding: 0.5rem;
+  padding: 0.6rem 0.75rem;
   border: 0;
+  border-radius: 999px;
   background: transparent;
   color: #111111;
   text-decoration: none;
@@ -16,13 +17,25 @@
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   transition:
-    transform 160ms ease,
-    opacity 160ms ease;
+    transform 70ms ease-out,
+    box-shadow 70ms ease-out,
+    opacity 70ms ease-out;
+}
+
+.instagram-link:focus {
+  outline: none;
+}
+
+.instagram-link.is-touch-hovered,
+.instagram-link:hover,
+.instagram-link:focus-visible {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 14px 28px rgba(17, 17, 17, 0.16);
 }
 
 .instagram-link:active {
-  transform: scale(0.94);
-  opacity: 0.72;
+  transform: translateY(-1px) scale(0.96);
+  box-shadow: 0 8px 16px rgba(17, 17, 17, 0.12);
 }
 
 .instagram-link__image-icon {
@@ -30,10 +43,8 @@
   height: 2.1rem;
   object-fit: contain;
   display: block;
-
   filter: grayscale(1) brightness(1);
   opacity: 1;
-
   user-select: none;
   -webkit-user-drag: none;
   pointer-events: none;
@@ -52,7 +63,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .instagram-link:hover {
-    transform: translateY(-2px);
-    opacity: 0.78;
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 14px 28px rgba(17, 17, 17, 0.16);
   }
 }
