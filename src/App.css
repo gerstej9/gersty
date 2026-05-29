@@ -71,7 +71,7 @@ select {
 h1 {
   margin: 0;
   color: var(--text);
-  font-size: clamp(4.5rem, 20vw, 11rem);
+  font-size: clamp(3rem, 15vw, 11rem);
   font-weight: 800;
   line-height: 0.86;
   text-transform: uppercase;
@@ -111,22 +111,21 @@ h1 {
   display: none;
 }
 
-@media (hover: none), (pointer: coarse) {
+@media (max-width: 768px) {
   .corner-raccoon {
     display: block;
     position: fixed;
     left: 0;
     bottom: 0;
-    width: min(18vw, 5rem);
+    width: min(20vw, 6rem);
     height: auto;
     z-index: 2;
     pointer-events: none;
     user-select: none;
     -webkit-user-drag: none;
-
-    filter: grayscale(1) contrast(0.95) brightness(1.05);
   }
 }
+
 /* Desktop enhancement only. Mobile is the priority. */
 @media (hover: hover) and (pointer: fine) {
   body {

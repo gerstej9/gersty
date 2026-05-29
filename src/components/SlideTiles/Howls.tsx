@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import howlsImage from "../../assets/howls.jpeg";
+import howlsCastle from "../../assets/howlsCastle.jpeg";
 import howlsAudio from "../../assets/Howls.m4a";
 import "./Howls.css";
 
@@ -33,7 +33,7 @@ export default function JamesPlaysHowlsTile({ isActive = false }) {
 
       <img
         className="james-howls-tile__image"
-        src={howlsImage}
+        src={howlsCastle}
         alt="James Plays Howls"
       />
 
