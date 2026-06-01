@@ -22,3 +22,4 @@ Add Raccon/ Vinegar
 // set up QR code
 // print business cards
 // print stickers
+// make change
