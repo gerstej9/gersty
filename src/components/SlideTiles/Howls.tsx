@@ -29,12 +29,12 @@ export default function JamesPlaysHowlsTile({ isActive = false }) {
 
   return (
     <section className="james-howls-tile">
-      <h3>James Plays Howls</h3>
+      <h3>James Plays Guitar</h3>
 
       <img
         className="james-howls-tile__image"
         src={howlsCastle}
-        alt="James Plays Howls"
+        alt="James Plays Guitar"
       />
 
       <audio

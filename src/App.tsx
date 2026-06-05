@@ -6,7 +6,7 @@ import InstagramLink from "./components/InstagramLink/InstagramLink";
 import JamesPlaysHowlsTile from "./components/SlideTiles/Howls";
 import SlideTile from "./components/SlideTiles/SlideTile";
 import titleImage from "./assets/titleImage.png";
-import jamesTwo from "./assets/IMG_1097.jpeg";
+import jgArt from "./assets/jgpart.jpg";
 import VideoTile from "./components/SlideTiles/VideoTile";
 import artVideo from "./assets/artVideo.mov";
 import cornerRaccoon from "./assets/cornerRaccoon.png";
@@ -66,9 +66,13 @@ function App() {
               src={titleImage}
               alt="Open tile carousel"
               slides={[
-                <JamesPlaysHowlsTile />,
-                <SlideTile imageSrc={jamesTwo} imageAlt="James G" />,
+                <SlideTile
+                  imageSrc={jgArt}
+                  imageAlt="James G"
+                  slideTitle="James G Makes Art"
+                />,
                 <VideoTile videoSrc={artVideo} videoLabel="James G" />,
+                <JamesPlaysHowlsTile />,
                 <div className="tile-card-content">
                   <h3>Third Tile</h3>
                   <p>Swipe left or right to move between these tiles.</p>
