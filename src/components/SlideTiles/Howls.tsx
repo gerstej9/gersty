@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import howlsCastle from "../../assets/howlsCastle.jpeg";
+import howlsCastle from "../../assets/howlsCastle.png";
 import howlsAudio from "../../assets/Howls.m4a";
 import "./Howls.css";
 

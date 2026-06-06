@@ -6,9 +6,11 @@ import InstagramLink from "./components/InstagramLink/InstagramLink";
 import JamesPlaysHowlsTile from "./components/SlideTiles/Howls";
 import SlideTile from "./components/SlideTiles/SlideTile";
 import titleImage from "./assets/titleImage.png";
-import jgArt from "./assets/jgpart.jpg";
+import jgArt from "./assets/jgart.jpg";
 import VideoTile from "./components/SlideTiles/VideoTile";
 import artVideo from "./assets/artVideo.mov";
+import soundCloud from "./assets/soundCloud.png";
+import coolCat from "./assets/coolCat1.jpg";
 import cornerRaccoon from "./assets/cornerRaccoon.png";
 
 function App() {
@@ -71,12 +73,31 @@ function App() {
                   imageAlt="James G"
                   slideTitle="James G Makes Art"
                 />,
+                <SlideTile
+                  imageSrc={soundCloud}
+                  imageAlt="James G"
+                  slideTitle="James G Makes Music"
+                  href="https://soundcloud.com/jamesgmm"
+                />,
                 <VideoTile videoSrc={artVideo} videoLabel="James G" />,
                 <JamesPlaysHowlsTile />,
-                <div className="tile-card-content">
-                  <h3>Third Tile</h3>
-                  <p>Swipe left or right to move between these tiles.</p>
-                </div>,
+                <SlideTile
+                  imageSrc={coolCat}
+                  imageAlt="James G"
+                  slideTitle="James G Is A Cool Cat"
+                  imageTone="ivory-black"
+                />,
+                <SlideTile slideTitle="James G is Dope">
+                  <ul>
+                    <li>Will take you on sick adventures</li>
+                    <li>
+                      Published Author in <em>Nature</em> magazine
+                    </li>
+                    <li>Makes Rad Stickers</li>
+                    <li>Invented a Weed Patent </li>
+                  </ul>
+                  ,
+                </SlideTile>,
               ]}
             />
           </div>

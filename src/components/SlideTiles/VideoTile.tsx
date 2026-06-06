@@ -36,7 +36,7 @@ export default function VideoTile({
 
   return (
     <section className="slide-tile" aria-label={videoLabel}>
-      <h3>James G Marks Art with Music</h3>
+      <h3>James G Makes Art with Music</h3>
       <video
         ref={videoRef}
         className="slide-tile__video"
