@@ -32,7 +32,7 @@ select {
 }
 
 .page-wrap {
-  min-height: 100vh;
+  min-height: 100dvh;
   background: var(--bg);
   display: flex;
   align-items: center;
@@ -41,7 +41,7 @@ select {
 
 .hero {
   width: min(100%, 900px);
-  min-height: 100svh;
+  min-height: 100dvh;
   text-align: center;
   display: flex;
   align-items: stretch;

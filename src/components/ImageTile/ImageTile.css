@@ -51,9 +51,14 @@
   z-index: 9000;
   display: grid;
   place-items: center;
-  padding: clamp(1rem, 5vw, 4rem);
+  padding:
+    max(0.75rem, env(safe-area-inset-top))
+    max(0.75rem, env(safe-area-inset-right))
+    max(0.75rem, env(safe-area-inset-bottom))
+    max(0.75rem, env(safe-area-inset-left));
   -webkit-tap-highlight-color: transparent;
 }
+
 
 .image-tile-backdrop {
   position: absolute;
@@ -69,11 +74,11 @@
   position: relative;
   z-index: 1;
   width: min(100%, 760px);
-  height: min(84svh, 720px);
+  height: min(78dvh, 680px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: clamp(1.25rem, 4vw, 2.5rem);
+  padding: clamp(1rem, 3vw, 2rem);
   border: 2px solid #111111;
   border-radius: 24px;
   background: #faf7ee;
@@ -239,5 +244,30 @@
   .image-tile-arrow:hover {
     transform: scale(1.1);
     opacity: 0.75;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-tile-panel {
+    width: 100%;
+    height: calc(
+      100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 1.5rem
+    );
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .image-tile-title,
+  .image-tile-panel h2 {
+    margin: 0 2.5rem 0.75rem;
+    font-size: clamp(1.75rem, 8vw, 3rem);
+  }
+
+  .image-tile-slide {
+    padding: 0.5rem;
+  }
+
+  .image-tile-controls {
+    padding-top: 0.5rem;
   }
 }
