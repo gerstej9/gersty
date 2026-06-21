@@ -25,6 +25,7 @@
   filter: none;
   user-select: none;
   -webkit-user-drag: none;
+  max-height: 395px;
 }
 
 .james-howls-tile__audio {

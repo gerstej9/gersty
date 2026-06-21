@@ -10,7 +10,7 @@ import jgArt from "./assets/jgart.jpg";
 import VideoTile from "./components/SlideTiles/VideoTile";
 import artVideo from "./assets/artVideo.mov";
 import soundCloud from "./assets/soundCloud.png";
-import coolCat from "./assets/coolCat1.jpg";
+import coolCat from "./assets/jamesCollage2.png";
 import cornerRaccoon from "./assets/cornerRaccoon.png";
 
 function App() {
@@ -87,17 +87,17 @@ function App() {
                   slideTitle="James G Is A Cool Cat"
                   imageTone="ivory-black"
                 />,
-                <SlideTile slideTitle="James G is Dope">
-                  <ul>
-                    <li>Will take you on sick adventures</li>
-                    <li>
-                      Published Author in <em>Nature</em> magazine
-                    </li>
-                    <li>Makes Rad Stickers</li>
-                    <li>Invented a Weed Patent </li>
-                  </ul>
-                  ,
-                </SlideTile>,
+                // <SlideTile slideTitle="James G is Dope">
+                //   <ul>
+                //     <li>Will take you on sick adventures</li>
+                //     <li>
+                //       Published Author in <em>Nature</em> magazine
+                //     </li>
+                //     <li>Makes Rad Stickers</li>
+                //     <li>Invented a Weed Patent </li>
+                //   </ul>
+                //   ,
+                // </SlideTile>,
               ]}
             />
           </div>

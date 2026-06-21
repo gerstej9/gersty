@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlay } from "@fortawesome/free-regular-svg-icons";
 import type { ReactNode } from "react";
 import "./SlideTile.css";
 
@@ -6,8 +8,8 @@ type SlideTileProps = {
   imageAlt?: string;
   slideTitle?: string;
   href?: string;
-  children?: ReactNode;
   imageTone?: "default" | "ivory-black";
+  children?: ReactNode;
 };
 
 export default function SlideTile({
@@ -15,8 +17,8 @@ export default function SlideTile({
   imageAlt = "",
   slideTitle,
   href,
-  children,
   imageTone = "default",
+  children,
 }: SlideTileProps) {
   const imageElement = imageSrc ? (
     <img
@@ -37,7 +39,7 @@ export default function SlideTile({
 
         {href && (
           <span className="slide-tile__link-badge" aria-hidden="true">
-            ↗
+            <FontAwesomeIcon icon={faCirclePlay} />
           </span>
         )}
       </span>
@@ -62,7 +64,7 @@ export default function SlideTile({
         imageContent
       )}
 
-      {children && <div className="slide-tile__top-content">{children}</div>}
+      {children && <div className="slide-tile__content">{children}</div>}
     </section>
   );
 }

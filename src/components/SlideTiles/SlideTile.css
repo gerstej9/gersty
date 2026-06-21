@@ -125,6 +125,27 @@
   margin-top: 1rem;
 }
 
+.slide-tile__link-badge {
+  position: absolute;
+  right: 0.3rem;
+  bottom: 0.75rem;
+  width: 1rem;
+  height: 1rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  line-height: 1;
+  box-shadow: 0 8px 20px rgba(17, 17, 17, 0.22);
+  pointer-events: none;
+}
+
+.slide-tile__link-badge svg {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+}
+
 @media (max-width: 768px) {
   .slide-tile__link-inner {
     width: min(100%, 22rem);
